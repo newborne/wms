@@ -1,0 +1,130 @@
+﻿<UserControl
+    x:Class="wms.View.ProductView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:wms.ViewModel"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.DataContext>
+        <local:ProductViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Assets/Styles/DefaultStyle.xaml" />
+
+    </UserControl.Resources>
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Border
+                    Grid.Row="0"
+                    Background="#37DC8A"
+                    CornerRadius="12,12,0,0">
+                    <TextBlock Style="{StaticResource ColumnTextBlockStyle}" Text="商品分级代码" />
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    Background="#37DC8A"
+                    CornerRadius="0,0,12,12">
+                    <DataGrid
+                        Margin="12,0,12,12"
+                        Background="#37dc8a"
+                        BorderThickness="0"
+                        ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                        RowStyle="{StaticResource RowStyle}"
+                        CellStyle="{StaticResource CellStyle}"
+                        FontSize="14"
+                        ItemsSource="{Binding ProductDataSet.Tables[0]}"
+                        RowHeaderWidth="0" />
+                </Border>
+
+            </Grid>
+            <Grid Grid.Column="1" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Border
+                    Grid.Row="0"
+                    Background="#37DC8A"
+                    CornerRadius="12,12,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Width="80"
+                            Style="{StaticResource ColumnTextBlockStyle}"
+                            Text="商品Id" />
+                        <TextBlock
+                            Width="140"
+                            Style="{StaticResource ColumnTextBlockStyle}"
+                            Text="商品名称" />
+                        <TextBlock
+                            Width="80"
+                            Style="{StaticResource ColumnTextBlockStyle}"
+                            Text="数量" />
+                    </StackPanel>
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    Background="#fff"
+                    CornerRadius="0,0,12,12">
+
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                        <ItemsControl Margin="0,4,0,4" ItemsSource="{Binding StoreList}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock
+                                            Width="80"
+                                            Style="{StaticResource RowTextBlockStyle}"
+                                            Text="{Binding Id}" />
+                                        <TextBlock
+                                            Width="140"
+                                            Style="{StaticResource RowTextBlockStyle}"
+                                            Text="{Binding ProductName}" />
+                                        <TextBlock
+                                            Width="80"
+                                            Style="{StaticResource RowTextBlockStyle}"
+                                            Text="{Binding Amt}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Border>
+
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Margin="0,24,0,0">
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <Button
+                    Command="{Binding SaveCommand}"
+                    Content="保存"
+                    Style="{StaticResource OperateButtonStyle}" />
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</UserControl>

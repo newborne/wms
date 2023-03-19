@@ -1,0 +1,127 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="DatePickerCalendarStyle" TargetType="{x:Type Calendar}">
+        <Setter Property="Foreground" Value="#FF404040" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Calendar}">
+                    <StackPanel x:Name="PART_Root" HorizontalAlignment="Center">
+                        <CalendarItem
+                            x:Name="PART_CalendarItem"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Style="{TemplateBinding CalendarItemStyle}" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type DatePicker}">
+        <Setter Property="Foreground" Value="#FF333333" />
+        <Setter Property="IsTodayHighlighted" Value="True" />
+        <Setter Property="SelectedDateFormat" Value="Short" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Width" Value="124" />
+        <!--  Set CalendarStyle to DatePickerCalendarStyle.  -->
+        <Setter Property="CalendarStyle" Value="{DynamicResource DatePickerCalendarStyle}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePicker}">
+                    <Border Padding="{TemplateBinding Padding}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Offset="0" Color="{DynamicResource BorderLightColor}" />
+                                <GradientStop Offset="1" Color="{DynamicResource BorderDarkColor}" />
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Offset="0" Color="{DynamicResource HeaderTopColor}" />
+                                <GradientStop Offset="1" Color="{DynamicResource ControlMediumColor}" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid
+                            x:Name="PART_Root"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <DatePickerTextBox
+                                x:Name="PART_TextBox"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Center"
+                                Focusable="{TemplateBinding Focusable}"
+                                Foreground="{TemplateBinding Foreground}" />
+                            <Grid
+                                x:Name="PART_DisabledVisual"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                IsHitTestVisible="False"
+                                Opacity="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Popup
+                                    x:Name="PART_Popup"
+                                    AllowsTransparency="True"
+                                    Placement="Bottom"
+                                    PlacementTarget="{Binding ElementName=PART_TextBox}"
+                                    StaysOpen="False" />
+                                <Rectangle
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Fill="#A5FFFFFF"
+                                    RadiusX="1"
+                                    RadiusY="1" />
+                                <Rectangle
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Width="19"
+                                    Height="18"
+                                    Margin="3,0,3,0"
+                                    Fill="#A5FFFFFF"
+                                    RadiusX="1"
+                                    RadiusY="1" />
+                            </Grid>
+                            <Button
+                                x:Name="PART_Button"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="3,0,3,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Focusable="False"
+                                Foreground="{TemplateBinding Foreground}"
+                                Style="{StaticResource DropDownButtonStyle}" />
+                        </Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="PART_DisabledVisual"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1"
+                                            Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

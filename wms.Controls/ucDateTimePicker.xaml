@@ -1,0 +1,71 @@
+﻿<UserControl
+    x:Class="wms.Controls.ucDateTimePicker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="clr-namespace:wms.Controls.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:wms.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converter:BooleanInvertConverter x:Key="BooleanInvertConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBox
+            x:Name="DateDisplay"
+            MinHeight="{Binding ElementName=PopUpCalendarButton, Path=ActualHeight}"
+            Margin="0,0,0,0"
+            HorizontalAlignment="Stretch"
+            VerticalContentAlignment="Center"
+            LostFocus="DateDisplay_OnLostFocus">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding DateTextIsWrong, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" Value="True">
+                            <Setter Property="Background" Value="LightGray" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <ToggleButton
+            Name="PopUpCalendarButton"
+            Grid.Column="1"
+            Width="20"
+            Height="20"
+            Margin="1"
+            IsChecked="False"
+            IsHitTestVisible="{Binding ElementName=CalendarPopup, Path=IsOpen, Mode=OneWay, Converter={StaticResource BooleanInvertConverter}}">
+            <Image
+                Width="13"
+                Height="13"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Source="Assets/Images/date.png"
+                Stretch="Fill" />
+        </ToggleButton>
+        <Popup
+            x:Name="CalendarPopup"
+            Grid.Column="0"
+            IsOpen="{Binding Path=IsChecked, ElementName=PopUpCalendarButton}"
+            PopupAnimation="Fade"
+            StaysOpen="False">
+            <Calendar
+                x:Name="CalDisplay"
+                DisplayDateStart="{Binding Path=MinimumDate, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                Style="{StaticResource DatePickerCalendarStyle}" />
+        </Popup>
+    </Grid>
+</UserControl>

@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6B0D6998-BF76-415B-A1C1-E512F0D99B45}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>wms</RootNamespace>
+    <AssemblyName>wms</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\CustomerModel.cs" />
+    <Compile Include="Model\EmployeeModel.cs" />
+    <Compile Include="Model\InModel.cs" />
+    <Compile Include="Model\OrderModel.cs" />
+    <Compile Include="Model\OutModel.cs" />
+    <Compile Include="Model\ProductModel.cs" />
+    <Compile Include="Model\SalesHistoryModel.cs" />
+    <Compile Include="Model\SalesModel.cs" />
+    <Compile Include="Model\SupplierModel.cs" />
+    <Compile Include="ViewModel\CustomerViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel.cs" />
+    <Compile Include="ViewModel\InViewModel.cs" />
+    <Compile Include="ViewModel\OrderViewModel.cs" />
+    <Compile Include="ViewModel\OutViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModel.cs" />
+    <Compile Include="ViewModel\SalesHistoryViewModel.cs" />
+    <Compile Include="ViewModel\SalesViewModel.cs" />
+    <Compile Include="ViewModel\SupplierViewModel.cs" />
+    <Compile Include="View\CustomerView.xaml.cs">
+      <DependentUpon>CustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeView.xaml.cs">
+      <DependentUpon>EmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OrderView.xaml.cs">
+      <DependentUpon>OrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OutView.xaml.cs">
+      <DependentUpon>OutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductView.xaml.cs">
+      <DependentUpon>ProductView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SalesHistoryView.xaml.cs">
+      <DependentUpon>SalesHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SalesView.xaml.cs">
+      <DependentUpon>SalesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SupplierView.xaml.cs">
+      <DependentUpon>SupplierView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\CommandBase.cs" />
+    <Compile Include="Common\GlobalValues.cs" />
+    <Compile Include="Common\MD5Provider.cs" />
+    <Compile Include="Common\NotifyBase.cs" />
+    <Compile Include="Common\PasswordHelper.cs" />
+    <Compile Include="DataAccess\DataEntity\UserEntity.cs" />
+    <Compile Include="DataAccess\ServerDataAccess.cs" />
+    <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="View\InView.xaml.cs">
+      <DependentUpon>InView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\Microsoft.CSharp.dll" />
+    <ReferencePath Include="C:\Users\94482\source\repos\wms\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\mscorlib.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Users\94482\source\repos\wms\packages\SharpVectors.1.7.1\lib\net47\SharpVectors.Converters.Wpf.dll" />
+    <ReferencePath Include="C:\Users\94482\source\repos\wms\packages\SharpVectors.1.7.1\lib\net47\SharpVectors.Core.dll" />
+    <ReferencePath Include="C:\Users\94482\source\repos\wms\packages\SharpVectors.1.7.1\lib\net47\SharpVectors.Css.dll" />
+    <ReferencePath Include="C:\Users\94482\source\repos\wms\packages\SharpVectors.1.7.1\lib\net47\SharpVectors.Dom.dll" />
+    <ReferencePath Include="C:\Users\94482\source\repos\wms\packages\SharpVectors.1.7.1\lib\net47\SharpVectors.Model.dll" />
+    <ReferencePath Include="C:\Users\94482\source\repos\wms\packages\SharpVectors.1.7.1\lib\net47\SharpVectors.Rendering.Gdi.dll" />
+    <ReferencePath Include="C:\Users\94482\source\repos\wms\packages\SharpVectors.1.7.1\lib\net47\SharpVectors.Rendering.Wpf.dll" />
+    <ReferencePath Include="C:\Users\94482\source\repos\wms\packages\SharpVectors.1.7.1\lib\net47\SharpVectors.Runtime.Wpf.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Configuration.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Net.Http.dll" />
+    <ReferencePath Include="C:\Users\94482\source\repos\wms\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\WindowsBase.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="C:\Users\94482\source\repos\wms\wms\obj\Debug\View\CustomerView.g.cs" />
+    <Compile Include="C:\Users\94482\source\repos\wms\wms\obj\Debug\View\EmployeeView.g.cs" />
+    <Compile Include="C:\Users\94482\source\repos\wms\wms\obj\Debug\View\InView.g.cs" />
+    <Compile Include="C:\Users\94482\source\repos\wms\wms\obj\Debug\View\LoginView.g.cs" />
+    <Compile Include="C:\Users\94482\source\repos\wms\wms\obj\Debug\View\MainView.g.cs" />
+    <Compile Include="C:\Users\94482\source\repos\wms\wms\obj\Debug\View\OrderView.g.cs" />
+    <Compile Include="C:\Users\94482\source\repos\wms\wms\obj\Debug\View\OutView.g.cs" />
+    <Compile Include="C:\Users\94482\source\repos\wms\wms\obj\Debug\View\ProductView.g.cs" />
+    <Compile Include="C:\Users\94482\source\repos\wms\wms\obj\Debug\View\SalesHistoryView.g.cs" />
+    <Compile Include="C:\Users\94482\source\repos\wms\wms\obj\Debug\View\SalesView.g.cs" />
+    <Compile Include="C:\Users\94482\source\repos\wms\wms\obj\Debug\View\SupplierView.g.cs" />
+    <Compile Include="C:\Users\94482\source\repos\wms\wms\obj\Debug\App.g.cs" />
+    <Compile Include="C:\Users\94482\source\repos\wms\wms\obj\Debug\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
+</Project>

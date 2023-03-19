@@ -1,0 +1,152 @@
+﻿<UserControl
+    x:Class="wms.View.SalesHistoryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:wms.ViewModel"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.DataContext>
+        <local:SalesHistoryViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Assets/Styles/DefaultStyle.xaml" />
+                <ResourceDictionary>
+                    <ControlTemplate x:Key="OperateButtonTemplate" TargetType="Button">
+                        <Border CornerRadius="4">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Offset="0" Color="#39DBD5" />
+                                    <GradientStop Offset="1" Color="#37DC8A" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid>
+                                <Border
+                                    Name="back"
+                                    Background="#22FFFFFF"
+                                    CornerRadius="4"
+                                    Visibility="Hidden" />
+                                <ContentControl
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Content="{TemplateBinding Content}"
+                                    Foreground="{TemplateBinding Foreground}" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="back" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="back" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="back" Property="Background" Value="#37DC8A" />
+                                <Setter Property="Foreground" Value="#AAA" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Margin="24" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="36" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Border
+            Grid.Row="0"
+            Background="#37DC8A"
+            CornerRadius="12,12,0,0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Width="80"
+                    Style="{StaticResource ColumnTextBlockStyle}"
+                    Text="年份" />
+                <TextBlock
+                    Width="40"
+                    Style="{StaticResource ColumnTextBlockStyle}"
+                    Text="月份" />
+                <TextBlock
+                    Width="40"
+                    Style="{StaticResource ColumnTextBlockStyle}"
+                    Text="商品Id" />
+                <TextBlock
+                    Width="100"
+                    Style="{StaticResource ColumnTextBlockStyle}"
+                    Text="商品名" />
+                <TextBlock
+                    Width="100"
+                    Style="{StaticResource ColumnTextBlockStyle}"
+                    Text="月销售量" />
+                <TextBlock
+                    Width="100"
+                    Style="{StaticResource ColumnTextBlockStyle}"
+                    Text="月销售额" />
+                <TextBlock
+                    Width="100"
+                    Style="{StaticResource ColumnTextBlockStyle}"
+                    Text="年销售量" />
+                <TextBlock
+                    Width="100"
+                    Style="{StaticResource ColumnTextBlockStyle}"
+                    Text="年销售额" />
+            </StackPanel>
+        </Border>
+        <Border
+            Grid.Row="1"
+            Background="#fff"
+            CornerRadius="0,0,12,12">
+            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                <ItemsControl Margin="0,4,0,4" ItemsSource="{Binding SalesHistoryList}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Width="80"
+                                    Style="{StaticResource RowTextBlockStyle}"
+                                    Text="{Binding Hyear}" />
+                                <TextBlock
+                                    Width="40"
+                                    Style="{StaticResource RowTextBlockStyle}"
+                                    Text="{Binding Hmon}" />
+                                <TextBlock
+                                    Width="40"
+                                    Style="{StaticResource RowTextBlockStyle}"
+                                    Text="{Binding Id}" />
+                                <TextBlock
+                                    Width="100"
+                                    Style="{StaticResource RowTextBlockStyle}"
+                                    Text="{Binding ProductName}" />
+                                <TextBlock
+                                    Width="100"
+                                    Style="{StaticResource RowTextBlockStyle}"
+                                    Text="{Binding Monqty}" />
+                                <TextBlock
+                                    Width="100"
+                                    Style="{StaticResource RowTextBlockStyle}"
+                                    Text="{Binding Monsalesroom}" />
+                                <TextBlock
+                                    Width="100"
+                                    Style="{StaticResource RowTextBlockStyle}"
+                                    Text="{Binding Yearqty}" />
+                                <TextBlock
+                                    Width="100"
+                                    Style="{StaticResource RowTextBlockStyle}"
+                                    Text="{Binding Yearsalesroom}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>

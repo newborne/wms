@@ -1,0 +1,292 @@
+﻿<UserControl
+    x:Class="wms.View.EmployeeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:wms.ViewModel"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.DataContext>
+        <local:EmployeeViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Assets/Styles/DefaultStyle.xaml" />
+    </UserControl.Resources>
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Border
+                    Grid.Row="0"
+                    Background="#37DC8A"
+                    CornerRadius="12,12,0,0">
+                    <TextBlock Style="{StaticResource ColumnTextBlockStyle}" Text="员工信息" />
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    Background="#fff"
+                    CornerRadius="0,0,12,12">
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                        <Grid Margin="18">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="48" />
+                                <RowDefinition Height="48" />
+                                <RowDefinition Height="48" />
+                                <RowDefinition Height="48" />
+                                <RowDefinition Height="48" />
+                                <RowDefinition Height="48" />
+                                <RowDefinition Height="48" />
+                                <RowDefinition Height="48" />
+                                <RowDefinition Height="48" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" VerticalAlignment="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Style="{StaticResource RowTextBlockStyle}" Text="员工ID" />
+                                    <TextBox
+                                        Grid.Column="2"
+                                        Width="150"
+                                        HorizontalAlignment="Right"
+                                        Template="{StaticResource TextBoxTemplate}"
+                                        Text="{Binding EmployeeModel.EmployeeId}" />
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Style="{StaticResource RowTextBlockStyle}" Text="部门名称" />
+                                    <ComboBox
+                                        Grid.Column="2"
+                                        Width="150"
+                                        HorizontalAlignment="Right"
+                                        DisplayMemberPath="depart_name"
+                                        ItemsSource="{Binding EmployeeDataSet.Tables[2]}"
+                                        SelectedIndex="0"
+                                        SelectedValue="{Binding DepartModel.DepartId}"
+                                        SelectedValuePath="depart_id" />
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" VerticalAlignment="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Style="{StaticResource RowTextBlockStyle}" Text="员工姓名" />
+                                    <TextBox
+                                        Grid.Column="2"
+                                        Width="150"
+                                        HorizontalAlignment="Right"
+                                        Template="{StaticResource TextBoxTemplate}"
+                                        Text="{Binding EmployeeModel.EmployeeName}" />
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" VerticalAlignment="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Style="{StaticResource RowTextBlockStyle}" Text="员工电话" />
+                                    <TextBox
+                                        Grid.Column="2"
+                                        Width="150"
+                                        HorizontalAlignment="Right"
+                                        Template="{StaticResource TextBoxTemplate}"
+                                        Text="{Binding EmployeeModel.EmployeePhone}" />
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Grid.Row="4" VerticalAlignment="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="75" />
+
+                                        <ColumnDefinition Width="75" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock
+                                        Grid.Column="0"
+                                        Style="{StaticResource RowTextBlockStyle}"
+                                        Text="员工性别" />
+                                    <StackPanel
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                        <RadioButton
+                                            Content="♂"
+                                            FontSize="14"
+                                            IsChecked="{Binding EmployeeModel.EmployeeSex, Converter={StaticResource boolToIntConverter}, ConverterParameter=1}"
+                                            Template="{StaticResource SexRadioButtonTemplate}" />
+                                    </StackPanel>
+                                    <StackPanel
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                        <RadioButton
+                                            Content="♀"
+                                            FontSize="14"
+                                            IsChecked="{Binding EmployeeModel.EmployeeSex, Converter={StaticResource boolToIntConverter}, ConverterParameter=0}"
+                                            Template="{StaticResource SexRadioButtonTemplate}" />
+                                    </StackPanel>
+
+
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Grid.Row="5" VerticalAlignment="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Style="{StaticResource RowTextBlockStyle}" Text="员工学历" />
+                                    <TextBox
+                                        Grid.Column="2"
+                                        Width="150"
+                                        HorizontalAlignment="Right"
+                                        Template="{StaticResource TextBoxTemplate}"
+                                        Text="{Binding EmployeeModel.EmployeeEducation}" />
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Grid.Row="6" VerticalAlignment="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Style="{StaticResource RowTextBlockStyle}" Text="员工地址" />
+                                    <TextBox
+                                        Grid.Column="2"
+                                        Width="150"
+                                        HorizontalAlignment="Right"
+                                        Template="{StaticResource TextBoxTemplate}"
+                                        Text="{Binding EmployeeModel.EmployeeAddress}" />
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Grid.Row="7" VerticalAlignment="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Style="{StaticResource RowTextBlockStyle}" Text="员工邮箱" />
+                                    <TextBox
+                                        Grid.Column="2"
+                                        Width="150"
+                                        HorizontalAlignment="Right"
+                                        Template="{StaticResource TextBoxTemplate}"
+                                        Text="{Binding EmployeeModel.EmployeeEmail}" />
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Grid.Row="8" VerticalAlignment="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Style="{StaticResource RowTextBlockStyle}" Text="员工备注" />
+                                    <TextBox
+                                        Grid.Column="2"
+                                        Width="150"
+                                        HorizontalAlignment="Right"
+                                        Template="{StaticResource TextBoxTemplate}"
+                                        Text="{Binding EmployeeModel.EmployeeRemark}" />
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="1" Margin="24,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Border
+                    Grid.Row="0"
+                    Background="#37DC8A"
+                    CornerRadius="12,12,0,0">
+                    <TextBlock Style="{StaticResource ColumnTextBlockStyle}" Text="登陆信息" />
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    Background="#37DC8A"
+                    CornerRadius="0,0,12,12">
+                    <DataGrid
+                        Margin="0,0,0,12"
+                        Background="#37dc8a"
+                        BorderThickness="0"
+                        CellStyle="{StaticResource CellStyle}"
+                        ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                        FontSize="14"
+                        ItemsSource="{Binding EmployeeDataSet.Tables[1]}"
+                        RowHeaderWidth="0"
+                        RowStyle="{StaticResource RowStyle}" />
+                </Border>
+
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Margin="0,24,0,0">
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <Button
+                    Command="{Binding FirstPageCommand}"
+                    Content="|&lt;"
+                    Style="{StaticResource OperateButtonStyle}" />
+                <Button
+                    Command="{Binding PrePageCommand}"
+                    Content="&lt;"
+                    Style="{StaticResource OperateButtonStyle}" />
+                <Button
+                    Command="{Binding NextPageCommand}"
+                    Content="&gt;"
+                    Style="{StaticResource OperateButtonStyle}" />
+                <Button
+                    Command="{Binding LastPageCommand}"
+                    Content="&gt;|"
+                    Style="{StaticResource OperateButtonStyle}" />
+                <Button
+                    Command="{Binding InsertCommand}"
+                    Content="新增"
+                    Style="{StaticResource OperateButtonStyle}" />
+                <Button
+                    Command="{Binding DeleteCommand}"
+                    Content="删除"
+                    Style="{StaticResource OperateButtonStyle}" />
+                <Button
+                    Command="{Binding SaveCommand}"
+                    Content="保存"
+                    Style="{StaticResource OperateButtonStyle}" />
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</UserControl>
