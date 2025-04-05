@@ -292,4 +292,4 @@ public class LoginViewModel : NotifyBase
 如需进一步了解项目或提供反馈，请联系项目维护者：
 
 - 邮箱：<newborne@foxmail.com>
-- GitHub：<https://github.com/newborne>
+- GitHub：<https://github.com/newborne/wms>
